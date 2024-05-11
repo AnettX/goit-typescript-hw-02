@@ -1,0 +1,23 @@
+.btn {
+  min-width: 150px;
+  height: 36px;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  background-color: #7676d7;
+  color: white;
+  border-radius: 4px;
+  margin-top: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:focus,
+.btn:hover {
+  background-color: #2525b2;
+}
+
+.containerBtn {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
+}

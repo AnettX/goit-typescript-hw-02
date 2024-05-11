@@ -1,0 +1,17 @@
+.imageList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.imageItem {
+  list-style-type: none;
+  transition: transform 0.3s;
+}
+
+.imageItem:hover,
+.imageItem:focus {
+  transform: scale(1.05);
+}

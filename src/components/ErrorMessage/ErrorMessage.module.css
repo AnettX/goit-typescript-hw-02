@@ -1,0 +1,12 @@
+.errorMsg {
+  font-weight: 700;
+  font-size: 2dvw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px;
+  background: #121fcf;
+  background: linear-gradient(to right, #121fcf 0%, #cf1512 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
