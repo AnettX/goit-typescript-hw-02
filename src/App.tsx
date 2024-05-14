@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import SearchBar from "./components/SearchBar/SearchBar";
-import { requestPhotoesByQuery } from "./services/api";
+import { Photo, requestPhotoesByQuery } from "./services/api";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import ImageModal from "./components/ImageModal/ImageModal";
+import React from "react";
 
-function App() {
-  const [query, setQuery] = useState("");
-  const [photos, setPhotos] = useState(null);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [isError, setIsError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [modalData, setModalData] = useState(null);
+function App(): JSX.Element {
+  const [query, setQuery] = useState<string>("");
+  const [photos, setPhotos] = useState<Photo[] | null>(null);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [modalData, setModalData] = useState<Photo | null>(null);
 
   useEffect(() => {
     if (query.length === 0) return;
@@ -44,7 +45,7 @@ function App() {
     fetchPhotosByQuery();
   }, [query, page]);
 
-  const onSetSearchQuery = (newQuery) => {
+  const onSetSearchQuery = (newQuery: string): void => {
     if (newQuery !== query) {
       setQuery(newQuery);
       setPhotos(null);
@@ -53,16 +54,16 @@ function App() {
     }
   };
 
-  const loadMorePhotos = () => {
+  const loadMorePhotos = (): void => {
     setPage(page + 1);
   };
 
-  const openModal = (photo) => {
+  const openModal = (photo): void => {
     setModalData(photo);
     setIsOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsOpen(false);
     setModalData(null);
   };
@@ -76,7 +77,11 @@ function App() {
 
       {photos && <ImageGallery photos={photos} openModal={openModal} />}
       {isOpen && (
-        <ImageModal isOpen={isOpen} closeModal={closeModal} photo={modalData} />
+        <ImageModal
+          isOpen={isOpen}
+          closeModal={closeModal}
+          photo={modalData !== null ? modalData : null}
+        />
       )}
       {totalPages > page && <LoadMoreBtn loadMorePhotos={loadMorePhotos} />}
     </div>

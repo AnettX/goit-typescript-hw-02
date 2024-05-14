@@ -1,15 +1,22 @@
 import css from "./SearchBar.module.css";
-import { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import { Field, Form, Formik } from "formik";
+import React from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 const FORM_INITIAL_VALUES = {
   searchTerm: "",
 };
 
-const SearchBar = ({ onSetSearchQuery }) => {
-  const handleSubmit = (values) => {
+interface SearchBarProps {
+  onSetSearchQuery: (query: string) => void;
+}
+
+interface FormValues {
+  searchTerm: string;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSetSearchQuery }) => {
+  const handleSubmit = (values: FormValues) => {
     if (!values.searchTerm.trim()) {
       toast.error("Please, enter your query", {
         style: {
