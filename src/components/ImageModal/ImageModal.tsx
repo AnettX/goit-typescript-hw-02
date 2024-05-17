@@ -1,18 +1,6 @@
 import React from "react";
-import Modal from "react-modal";
 import { Photo } from "../../services/api";
-Modal.setAppElement("#root");
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+import { Modal } from "react-bootstrap";
 
 interface ImageModalProps {
   isOpen: boolean;
@@ -26,12 +14,7 @@ const ImageModal: React.FC<ImageModalProps> = ({
   photo,
 }) => {
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={closeModal}
-      contentLabel="Image Modal"
-      style={customStyles}
-    >
+    <Modal show={isOpen} onHide={closeModal} contentLabel="Image Modal">
       <img src={photo?.urls.regular} alt={photo?.alt_description} />
     </Modal>
   );

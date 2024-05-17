@@ -58,7 +58,7 @@ function App(): JSX.Element {
     setPage(page + 1);
   };
 
-  const openModal = (photo): void => {
+  const openModal = (photo: React.SetStateAction<Photo | null>): void => {
     setModalData(photo);
     setIsOpen(true);
   };
